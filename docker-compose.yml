@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  web89:
+    image: php:8.2-apache
+    container_name: web89
+    volumes:
+      - ./web89/html:/var/www/html
+      - ./web89/apache/sites_enabled:/etc/apache2/sites_enabled
+      - ./web89/php/custom-php.ini:/use/local/etc/php/conf.d/custom-php.ini
+    ports:
+      -89:80
