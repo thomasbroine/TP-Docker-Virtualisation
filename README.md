@@ -1,25 +1,27 @@
-# TP Docker Virtualisation
+ **<font size="8">TP Virtualisation Docker</font>**
+
  Dans le cadre de mon cours de vitualisation, j'ai été amené à manipuler Docker donc à créer des conteneurs et un réseau pour y implémenter un projet web déjà existant.  
  Voilà un compte rendu de mes manipulations.
 
 
 - [Installation Docker](#installation-docker)
-- [Commandes Docker](#section-1)
-- [Site Web sur Docker](#mise-en-place-dun-site-web-sur-docker)  
+- [Liste de commandes Docker](#liste-de-commandes-docker)
+- [Mise en place d'un site web sur Docker](#mise-en-place-dun-site-web-sur-docker)
+    - [Création d'un Network](#création-dun-network)
+    - [Création du volume](#création-du-volume)
+    - [Création du compose](#création-du-compose)
 
 
 
 
-
-
-# Installation Docker
+## Installation Docker
 Avec un environnement Windows, il faudra installer un noyau Linux. Pour cela j'ai installer WSL2 :  
 https://learn.microsoft.com/en-us/windows/wsl/install  
 
 Nous pouvons maintenant installer Docker Desktop qui permet de gérer Docker en ligne de commandes ou via une interface graphique :  
 https://docs.docker.com/desktop/install/windows-install/
 
-# Liste des commandes Docker que nous allons utiliser : {#section-1}
+## Liste de commandes Docker 
 Toutes les commandes sont à lancer dans un terminal quelconque.
 * Pour afficher tous les conteneurs Docker en cours d'exécution : 
 
@@ -47,10 +49,10 @@ Toutes les commandes sont à lancer dans un terminal quelconque.
 
 
 
-# Mise en place d'un site web sur Docker 
+## Mise en place d'un site web sur Docker 
 En complément de consigne, nous devons utiliser les notions compose, network, volume et build. Et nous devons construire un environnement de développement exploitant le serveur postgresql de l’iut avec extension postsig et le serveur web de l’iut avec xdebug.
 
-### Création d'un Network : {#section-3}
+#### Création d'un Network 
 Docker utilise des réseaux pour connecter des conteneurs entre eux et au monde extérieur. Le mode de réseau par défaut de Docker est appelé **bridge** Dans ce mode, chaque conteneur est connecté à un réseau virtuel privé , qui est créé automatiquement lorsque Docker est installé.
 
 Créer un réseau nommé "sae" : 
@@ -61,7 +63,7 @@ Créer un conteneur connecté au réseau sae :
 
     docker run -dp 82:80 --network sae  nginx
 
-### Création du volume : {#section-4}
+#### Création du volume 
 Afin de rendre persistantes les données entre une machine hôte et un conteneur il est possible de créer un volume permettant de stocker localement certaines données du conteneur
 
 Pour cela on doit créer un fichier "docker" qui sera le volume hôte.
@@ -71,5 +73,5 @@ Puis dans le terminal on écrit :
 
 En résumé, cette commande est utilisée pour créer et exécuter un conteneur Docker qui héberge un site web basé sur Apache et PHP, en montant un volume pour persister les données du site web.
 
-### Notion de compose : {#section-5}
+#### Création du compose 
 Compose est un outil qui permet de gérer et d'orchestrer plusieurs conteneurs Docker de manière coordonnée. Il permet de définir et de lancer des applications multi-conteneurs à l'aide d'un seul fichier de configuration YAML, appelé "docker-compose.yml".
