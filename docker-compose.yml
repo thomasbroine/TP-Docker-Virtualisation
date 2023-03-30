@@ -1,13 +1,45 @@
 version: '3.8'
+
 services:
+
   web89:
+    build: .
     image: php:8.2-apache
     container_name: web89
+    ports:
+      - 89:80
     volumes:
       - ./web89/html:/var/www/html
       - ./web89/apache/sites_enabled:/etc/apache2/sites_enabled
       - ./web89/php/custom-php.ini:/use/local/etc/php/conf.d/custom-php.ini
-    ports:
-      -89:80
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=souvignetn
+      - DATABASE_USER=souvignetn
+      - DATABASE_PASSWORD=060781121EK
+    depends_on:
+      - db
+    networks:
+      - app_network
 
-  
+
+  db:
+    image: postgis/postgis:latest
+    environment:
+      - POSTGRES_DB=souvignetn
+      - POSTGRES_USER=souvignetn
+      - POSTGRES_PASSWORD=060781121EK
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  db_data:
