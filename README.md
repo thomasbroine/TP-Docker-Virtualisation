@@ -2,20 +2,17 @@
  Dans le cadre de mon cours de vitualisation, j'ai été amené à manipuler Docker donc à créer des conteneurs et un réseau pour y implémenter un projet web déjà existant.  
  Voilà un compte rendu de mes manipulations.
 
- 1. [Installation Docker](#installation-docker)
-2. [Commandes Docker](#section-1)
-3. [Site Web sur Docker](#section-2)  
-   
-    3.1 [Notion de Network](#section-3)  
-    3.2 [Notion de Volume](#section-4)  
-    3.3 [Notion de Compose](#section-5)  
-    3.3 [Notion de Build](#section-6)  
+
+- [Installation Docker](#installation-docker)
+- [Commandes Docker](#section-1)
+- [Site Web sur Docker](#mise-en-place-dun-site-web-sur-docker)  
 
 
 
 
 
-# Installation Docker : {#installation-docker}
+
+# Installation Docker
 Avec un environnement Windows, il faudra installer un noyau Linux. Pour cela j'ai installer WSL2 :  
 https://learn.microsoft.com/en-us/windows/wsl/install  
 
@@ -50,7 +47,7 @@ Toutes les commandes sont à lancer dans un terminal quelconque.
 
 
 
-# Mise en place d'un site web sur Docker : {#section-2}
+# Mise en place d'un site web sur Docker 
 En complément de consigne, nous devons utiliser les notions compose, network, volume et build. Et nous devons construire un environnement de développement exploitant le serveur postgresql de l’iut avec extension postsig et le serveur web de l’iut avec xdebug.
 
 ### Création d'un Network : {#section-3}
