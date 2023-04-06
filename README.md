@@ -1,7 +1,7 @@
 <h1 style="font-size: 45px;">TP Virtualisation Docker</h1>
 
- Dans le cadre de mon cours de vitualisation, j'ai été amené à manipuler Docker donc à créer des conteneurs et un réseau pour y implémenter un projet web déjà existant.  
- Voilà un compte rendu de mes manipulations.
+ Dans le cadre de mon cours de virtualisation, j'ai été amené à manipuler Docker donc à créer des conteneurs et un réseau pour y implémenter un projet web déjà existant.  
+ Voilà un compte-rendu de mes manipulations.
 
 
 - [Installation Docker](#installation-docker)
@@ -11,12 +11,13 @@
     - [Création du volume](#création-du-volume)
     - [Création du compose](#création-du-compose)
     - [Création du build](#création-du-build)
+- [Conclusion](#conclusion)
 
 
 
 
 ## Installation Docker
-Avec un environnement Windows, il faudra installer un noyau Linux. Pour cela j'ai installer **WSL2** :  
+Avec un environnement Windows, il faudra installer un noyau Linux. Pour cela j'ai installé **WSL2** :  
 https://learn.microsoft.com/en-us/windows/wsl/install  
 
 Je peux maintenant installer **Docker Desktop** qui permet de gérer Docker en ligne de commandes ou via une interface graphique :  
@@ -75,7 +76,8 @@ Puis dans le terminal j'écris :
 En résumé, cette commande est utilisée pour créer et exécuter un conteneur Docker qui héberge un site web basé sur Apache et PHP, en montant un volume pour persister les données du site web.
 
 #### Création du compose 
-Compose est un outil qui permet de gérer et d'orchestrer plusieurs conteneurs Docker de manière coordonnée. Il permet de définir et de lancer des applications multi-conteneurs à l'aide d'un seul fichier de configuration YAML, appelé "docker-compose.yml". Ce fichier doit être stocker dans le fichier "docker".  
+Compose est un outil qui permet de gérer et d'orchestrer plusieurs conteneurs Docker de manière coordonnée. Il permet de définir et de lancer des applications multi-conteneurs à l'aide d'un seul fichier de configuration YAML, appelé "docker-compose.yml". Dans mon exercice, il va se charger de relier mes conteneurs au réseau créé, de créer les volumes et autres.  
+Ce fichier doit être stocké dans le fichier "docker".  
 Voilà comment il doit être construit :  
     
     version: '3.8'
@@ -126,10 +128,10 @@ Voilà comment il doit être construit :
 
 #### Création du build
 Il est possible d’ajouter une étape supplémentaire dans notre compose dite “build” afin de prendre une image et de la préparer avec des actions personnalisées avant de l’utiliser.  
-Pour pourvoir utiliser Xdebug je vais en avoir besoin.  
+Pour pouvoir utiliser Xdebug je vais en avoir besoin.  
 
 Je dois donc créer un fichier Dockerfile **(majuscule sur le D et sans extension)** et l'ajouter dans le fichier du projet.
-Je peux ensuite écrire dedans :
+Je peux ensuite écrire à l'intérieur :
 
     FROM php:8.2-apache
 
@@ -147,3 +149,7 @@ Je dois ensuite ajouter une ligne au début du fichier _docker-compose.yml_ :
         web89:
             build: .
 
+## Conclusion 
+Malgré une complexité d'initialisation et d'utilisation, Docker présente de nombreux avantages tel que la consistance, qui permet d'exécuter des environnement et des application de manière cohérente, ou la portabilité, car
+ils peuvent être déployés sur n'importe quel système d'exploitation.  
+Ce TP m'a permis de comprendre de nombreux principes de Docker qui me seront utiles très prochainement en entreprise.
