@@ -125,9 +125,9 @@ Voilà comment il doit être construit :
         volumes:
             db_data:
 
-Pour exécuter le compose j'écris dans le terminal : 
-   
-   docker compose up -d
+Pour exécuter le compose, j'écris dans le terminal : 
+
+    docker compose up -d
 
 #### Création du build
 Il est possible d’ajouter une étape supplémentaire dans notre compose dite “build” afin de prendre une image et de la préparer avec des actions personnalisées avant de l’utiliser.  
