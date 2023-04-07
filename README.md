@@ -1,3 +1,6 @@
+---
+lang: fr
+---
 <h1 style="font-size: 45px;">TP Virtualisation Docker</h1>
 
  Dans le cadre de mon cours de virtualisation, j'ai été amené à manipuler Docker donc à créer des conteneurs et un réseau pour y implémenter un projet web déjà existant.  
